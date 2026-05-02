@@ -106,3 +106,57 @@ Output:
 raw input: [hello there
 ]
 ```
+
+## Test the blank line
+
+Check:
+```
+#include <stdio.h>    // printf, fgets, fflush
+#include <stdlib.h>   // exit()
+#include <string.h>   // strtok, strcmp
+
+#define NL 100        // #define creates a named number. It's max characters per input line
+#define NV 20         // max number of words in one command
+
+char line[NL];        // creates a box that holds up to 100 characters
+
+void prompt(void) {
+  printf("tiny-sh> ");   // print the prompt text
+  fflush(stdout);        // force it to appear immediately, before waiting for input
+}
+
+
+int main(void) {
+
+    while (1) {
+        prompt();
+        fgets(line, NL, stdin);
+        if (feof(stdin)) exit(0);
+
+        if (line[0] == '\n') continue; // When press Enter alone, line[0] is '\n', so the continue fires and skips printf
+        
+        printf("raw input: [%s]\n", line);
+    }
+}
+
+Run:
+```
+gcc main.c -o shell && ./shell
+```
+
+Type `hello` and Output:
+```
+tiny-sh> hello
+raw input: [hello
+]
+```
+
+If then hit enters like for 3 times, then it shows empty:
+```
+tiny-sh> hello
+raw input: [hello
+]
+tiny-sh> 
+tiny-sh> 
+tiny-sh> 
+```

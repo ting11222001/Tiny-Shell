@@ -34,10 +34,13 @@ int main(void) {
     //     printf("you typed: %s\n", v[0]);  // just to confirm input works
     // }
 
-     while (1) {
+    while (1) {
         prompt();
         fgets(line, NL, stdin);
         if (feof(stdin)) exit(0);
+
+        if (line[0] == '\n') continue; // When press Enter alone, line[0] is '\n', so the continue fires and skips printf
+        
         printf("raw input: [%s]\n", line);
     }
 }
