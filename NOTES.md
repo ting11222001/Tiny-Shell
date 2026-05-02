@@ -200,6 +200,7 @@ int main(void) {
             v[i] = strtok(NULL, sep);
             if (v[i] == NULL) break;
         }
+        // after this loop, i = total number of words
 
         for (int j = 0; j < i; j++) {
             printf("v[%d] = %s\n", j, v[j]);
@@ -220,3 +221,10 @@ v[0] = ls
 v[1] = -la
 v[2] = /home
 ```
+
+Note that `strtok` uses `char *sep = " \t\n";` to split the input line. 
+
+You need all three because:
+- " " (space): handles ls -la where words are separated by spaces
+- "\t" (tab): handles input where someone presses Tab between words
+- "\n" (newline): removes the newline that fgets leaves at the end of the line

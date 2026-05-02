@@ -35,7 +35,7 @@ int main(void) {
     // }
 
     char *v[NV];
-    char *sep = " \t\n";
+    char *sep = " \t\n"; // fgets always keeps the trailing newline, so \n in the separator cleans it up automatically.
     int i;
 
     while (1) {
@@ -51,6 +51,7 @@ int main(void) {
             v[i] = strtok(NULL, sep);
             if (v[i] == NULL) break;
         }
+        // after this loop, i = total number of words
 
         for (int j = 0; j < i; j++) {
             printf("v[%d] = %s\n", j, v[j]);
