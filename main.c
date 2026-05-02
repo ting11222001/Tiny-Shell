@@ -34,6 +34,10 @@ int main(void) {
     //     printf("you typed: %s\n", v[0]);  // just to confirm input works
     // }
 
+    char *v[NV];
+    char *sep = " \t\n";
+    int i;
+
     while (1) {
         prompt();
         fgets(line, NL, stdin);
@@ -41,6 +45,15 @@ int main(void) {
 
         if (line[0] == '\n') continue; // When press Enter alone, line[0] is '\n', so the continue fires and skips printf
         
-        printf("raw input: [%s]\n", line);
+
+        v[0] = strtok(line, sep);
+        for (i = 1; i < NV; i++) {
+            v[i] = strtok(NULL, sep);
+            if (v[i] == NULL) break;
+        }
+
+        for (int j = 0; j < i; j++) {
+            printf("v[%d] = %s\n", j, v[j]);
+        }
     }
 }
