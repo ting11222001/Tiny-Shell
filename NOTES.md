@@ -138,6 +138,7 @@ int main(void) {
         printf("raw input: [%s]\n", line);
     }
 }
+```
 
 Run:
 ```
@@ -228,3 +229,16 @@ You need all three because:
 - " " (space): handles ls -la where words are separated by spaces
 - "\t" (tab): handles input where someone presses Tab between words
 - "\n" (newline): removes the newline that fgets leaves at the end of the line
+
+##  What does `ls -la /home` mean
+
+`ls` is the command. It lists files and folders. `-la` is two flags combined:
+
+```
+-l means show in a long list format, with permissions, size, and date
+-a means show all files, including hidden ones (files that start with .)
+```
+
+`/home` is the folder you want to list.
+
+So the full command means: "show me all files in the /home folder, in detailed format."
