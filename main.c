@@ -7,10 +7,10 @@
 
 char line[NL];        // creates a box that holds up to 100 characters
 
-// void prompt(void) {
-//   printf("tiny-sh> ");   // print the prompt text
-//   fflush(stdout);        // force it to appear immediately, before waiting for input
-// }
+void prompt(void) {
+  printf("tiny-sh> ");   // print the prompt text
+  fflush(stdout);        // force it to appear immediately, before waiting for input
+}
 
 
 int main(void) {
@@ -34,5 +34,10 @@ int main(void) {
     //     printf("you typed: %s\n", v[0]);  // just to confirm input works
     // }
 
-    return 0;
+     while (1) {
+        prompt();
+        fgets(line, NL, stdin);
+        if (feof(stdin)) exit(0);
+        printf("raw input: [%s]\n", line);
+    }
 }
